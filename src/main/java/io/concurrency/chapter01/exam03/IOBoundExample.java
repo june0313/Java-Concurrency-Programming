@@ -17,7 +17,7 @@ public class IOBoundExample {
 
                     // IO 가 집중 되는 작업
                     for (int j = 0; j < 5; j++) {
-                        Files.readAllLines(Path.of("D:\\lecture\\Java-Concurrency-Programming\\Java-Concurrency-Programming\\src\\chapter01\\exam03\\sample.txt"));
+                        Files.readAllLines(Path.of("/Users/youngjun/study/Java-Concurrency-Programming/src/main/java/io/concurrency/chapter01/exam03/sample.txt"));
                         System.out.println("스레드: " + Thread.currentThread().getName() +", " +j); // IO Bound 일때 ContextSwitching 이 일어난다
                     }
 

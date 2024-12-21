@@ -8,6 +8,7 @@ public class BasicSleepExample {
             System.out.println("Hello World");
 
         } catch (InterruptedException e) {
+            System.out.println("Interrupted");
             throw new RuntimeException(e);
         }
     }

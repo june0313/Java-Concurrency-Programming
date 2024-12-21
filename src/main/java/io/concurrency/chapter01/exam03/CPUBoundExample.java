@@ -36,15 +36,15 @@ public class CPUBoundExample {
             });
             futures.add(future);
         }
-        futures.forEach(f -> {
-            try {
-                f.get();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            } catch (ExecutionException e) {
-                throw new RuntimeException(e);
-            }
-        });
+//        futures.forEach(f -> {
+//            try {
+//                f.get();
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            } catch (ExecutionException e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
         long endTime2 = System.currentTimeMillis();
         System.out.println("CPU 개수를 초과하는 데이터를 병렬로 처리하는 데 걸린 시간: " + (endTime2 - startTime2) + "ms");
         executorService.shutdown();
