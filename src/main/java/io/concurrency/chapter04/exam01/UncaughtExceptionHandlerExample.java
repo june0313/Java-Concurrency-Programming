@@ -1,10 +1,12 @@
 package io.concurrency.chapter04.exam01;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Slf4j
 public class UncaughtExceptionHandlerExample {
-    private static final Logger LOGGER = Logger.getLogger(UncaughtExceptionHandlerExample.class.getName());
 
     public static void main(String[] args) {
         Thread thread = new Thread(() -> {
@@ -16,7 +18,7 @@ public class UncaughtExceptionHandlerExample {
 
         // 스레드의 UncaughtExceptionHandler 설정
         thread.setUncaughtExceptionHandler((t, e) -> {
-            LOGGER.log(Level.SEVERE, t.getName() + " 에서 예외가 발생했습니다.", e);
+            log.error("{} 에서 예외가 발생했습니다.", t.getName(), e);
 
             // 오류가 발생한 경우 알림 서비스 호출 (예: 이메일 또는 Slack 알림)
             sendNotificationToAdmin(e);
