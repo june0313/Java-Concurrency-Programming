@@ -1,7 +1,10 @@
 package io.concurrency.chapter11.exam12;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.ForkJoinPool;
 
+@Slf4j
 public class CustomForkJoinPoolExample {
 
     public static void main(String[] args) {
@@ -10,14 +13,18 @@ public class CustomForkJoinPoolExample {
         for (int i = 0; i < array.length; i++) {
             array[i] = i;
         }
-        ForkJoinPool pool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
+        int parallelism = Runtime.getRuntime().availableProcessors();
+        log.info("Available processors: {}", parallelism);
+
+
+        ForkJoinPool pool = new ForkJoinPool(parallelism);
 
         CustomRecursiveTask task = new CustomRecursiveTask(array, 0, array.length);
         long result = pool.invoke(task);
 
-        System.out.println("result = " + result);
-        System.out.println("pool = " + pool);
-        System.out.println("stealing = " + pool.getStealCount());
+        log.info("result: {}", result);
+        log.info("pool = {}", pool);
+        log.info("stealing = {}", pool.getStealCount());
 
         pool.shutdown();
     }
